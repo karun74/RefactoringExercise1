@@ -6,7 +6,7 @@ public class OrderUtility implements OrderUtilityInterface{
 
 	@Override
 	public String convertToText(Integer input) {
-		String output= input.toString();
+		String output= NumberToWordConverter.convertNumberToWords(input);
 		return output;
 	}
 
@@ -18,7 +18,8 @@ public class OrderUtility implements OrderUtilityInterface{
 
 	@Override
 	public String roundAndConvert(Double d) {
-		String outputStr = roundToNearestNumber(d).toString();
+		Integer roundedValue = roundToNearestNumber(d);
+		String outputStr = NumberToWordConverter.convertNumberToWords(roundedValue);
 		return outputStr;
 	}
 	
