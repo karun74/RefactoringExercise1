@@ -6,6 +6,9 @@ public class Order implements Serializable {
 	
 	private Double orderAmount;
 
+	public Order(Double orderAmount){
+		this.orderAmount=orderAmount;
+	}
 	public Double getOrderAmount() {
 		return orderAmount;
 	}
