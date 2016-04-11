@@ -1,6 +1,7 @@
 package com.sapient.utility;
 
-import java.util.HashMap;
+
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ public class WordCountUnitTest {
 	public void should_verify_distinct_words_count() {
 		String wordCountInput = "Simple Example for word count Simple testing";
 		Integer actualCount = wcUtil.getCountOfDistinctWordsInText(wordCountInput,"\\p{javaWhitespace}+");
-		assertEquals(new Integer(6), actualCount);
+		  assertThat(actualCount, is(6));
 	}
 
 	@Test
@@ -21,7 +22,7 @@ public class WordCountUnitTest {
 		String wordCountInput = "Simple Example for word count Simple testing";
 
 		Integer actualFrequencyOfWord = wcUtil.getFrequencyForWord(frequencyFindingWord, wordCountInput,"\\p{javaWhitespace}+");
-		assertEquals(2, actualFrequencyOfWord.intValue());
+		assertThat(actualFrequencyOfWord.intValue(),is(2));
 
 	}
 	
@@ -44,7 +45,7 @@ public class WordCountUnitTest {
 	public void should_work_with_other_delimiter_when_text_with_other_delimiter() {
 		String wordCountInput = "Simple;Example;for;word;count;Simple;testing";
 		Integer actualCount =wcUtil.getCountOfDistinctWordsInText(wordCountInput,";");
-		assertEquals(new Integer(6), actualCount);
+		assertThat( actualCount,is(6));
 
 	}
 
