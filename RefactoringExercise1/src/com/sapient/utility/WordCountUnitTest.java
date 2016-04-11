@@ -24,6 +24,15 @@ public class WordCountUnitTest {
 		assertEquals(2, actualFrequencyOfWord.intValue());
 
 	}
+	
+	@Test
+	public void should_verify_frequency_of_a_non_existing_word_in_a_text(){
+		String frequencyFindingWord = "Complete";
+		String wordCountInput = "Simple Example for word count Simple testing";
+
+		Integer actualFrequencyOfWord = wcUtil.getFrequencyForWord(frequencyFindingWord, wordCountInput,"\\p{javaWhitespace}+");
+		assertNull(actualFrequencyOfWord);
+	}
 
 	@Test(expected = EmptyTextException.class)
 	public void should_throw_exception_when_empty_text_passed_when_verify_distinct_words() {
