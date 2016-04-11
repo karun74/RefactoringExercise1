@@ -5,15 +5,30 @@ import java.util.Scanner;
 
 public class WordCountUtility {
 
-	private HashMap<String, Integer> makeWordMap(String text,String delimiter) throws EmptyTextException {
-		if("".equals(text))
+	private HashMap<String, Integer> makeWordMap(String text, String delimiter) throws EmptyTextException {
+		if ("".equals(text))
 			throw new EmptyTextException();
 		HashMap<String, Integer> wordCountMap = new HashMap<String, Integer>();
+		Scanner scan = getScanner(text, delimiter);
+		try {
+			scanAndGetUpdatedMap(wordCountMap, scan);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			scan.close();
+		}
+		return wordCountMap; // return the HashMap you made of distinct words
+	}
+
+	private Scanner getScanner(String text, String delimiter) {
 		Scanner scan = new Scanner(text);
 		scan.useDelimiter(delimiter);
-		try{
-		
-		  while (scan.hasNext()) {
+		return scan;
+	}
+
+	private HashMap<String, Integer> scanAndGetUpdatedMap(HashMap<String, Integer> wordCountMap, Scanner scan) {
+		while (scan.hasNext()) {
 			String word = scan.next(); // scanner automatically uses " " as a
 										// delimeter
 			int countWord = 0;
@@ -30,12 +45,7 @@ public class WordCountUtility {
 													// value
 			}
 		}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			scan.close();
-		}
-		return wordCountMap; // return the HashMap you made of distinct words
+		return wordCountMap;
 	}
 
 	private int getDistinctWordCount(HashMap<String, Integer> list) {
@@ -44,12 +54,12 @@ public class WordCountUtility {
 
 	// get the frequency of the given word
 	public int getFrequencyForWord(String word, String text, String delimiterPattern) {
-		HashMap<String, Integer> list = makeWordMap(text,delimiterPattern);
+		HashMap<String, Integer> list = makeWordMap(text, delimiterPattern);
 		return list.get(word);
 	}
 
-	public Integer getCountOfDistinctWordsInText(String text,String delimiterPattern) throws EmptyTextException {
-		HashMap<String, Integer> countMap = makeWordMap(text,delimiterPattern);
+	public Integer getCountOfDistinctWordsInText(String text, String delimiterPattern) throws EmptyTextException {
+		HashMap<String, Integer> countMap = makeWordMap(text, delimiterPattern);
 		return getDistinctWordCount(countMap);
 	}
 }
