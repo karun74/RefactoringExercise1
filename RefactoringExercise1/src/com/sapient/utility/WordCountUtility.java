@@ -53,9 +53,11 @@ public class WordCountUtility {
 	}
 
 	// get the frequency of the given word
-	public int getFrequencyForWord(String word, String text, String delimiterPattern) {
+	public Integer getFrequencyForWord(String word, String text, String delimiterPattern) {
 		HashMap<String, Integer> list = makeWordMap(text, delimiterPattern);
-		return list.get(word);
+		System.out.println("Size of WordMap: "+list);
+		Integer freq = list.get(word);
+		return freq;
 	}
 
 	public Integer getCountOfDistinctWordsInText(String text, String delimiterPattern) throws EmptyTextException {
